@@ -1,0 +1,266 @@
+:root {
+  --bg: #0f1115;
+  --panel: #171a21;
+  --text: #d7dde8;
+  --muted: #6b7385;
+  --accent: #7ee0c3;
+  --correct: #7ee0c3;
+  --wrong: #ff6b7a;
+  --caret: #e8c36a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background:
+    radial-gradient(circle at top, #1c2433 0%, transparent 45%),
+    var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px 48px;
+}
+
+.app {
+  width: min(860px, 100%);
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.header h1 {
+  font-size: 2.4rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+.header p {
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.label {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pills {
+  display: flex;
+  background: var(--panel);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.pill {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.pill.active,
+.pill:hover {
+  background: #243041;
+  color: var(--text);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stat {
+  background: var(--panel);
+  border-radius: 14px;
+  padding: 16px 12px;
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.playfield {
+  background: var(--panel);
+  border-radius: 18px;
+  padding: 28px 24px 22px;
+  min-height: 220px;
+  cursor: text;
+  position: relative;
+}
+
+.words {
+  font-size: 1.45rem;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  max-height: 9.2em;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.char {
+  position: relative;
+}
+
+.char.correct {
+  color: var(--correct);
+}
+
+.char.incorrect {
+  color: var(--wrong);
+  text-decoration: underline;
+}
+
+.char.current::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 4px;
+  width: 2px;
+  height: 1.2em;
+  background: var(--caret);
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.hidden-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  width: 0;
+}
+
+.hint {
+  margin-top: 18px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.restart {
+  background: var(--accent);
+  color: #102018;
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 22px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.restart:hover {
+  filter: brightness(1.08);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 12, 16, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.results-card {
+  background: #1d2230;
+  padding: 28px;
+  border-radius: 16px;
+  width: min(420px, 92%);
+  text-align: center;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 22px 0;
+}
+
+.results-grid strong {
+  display: block;
+  font-size: 1.7rem;
+  color: var(--accent);
+}
+
+.results-grid span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.best-note {
+  color: var(--caret);
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .words {
+    font-size: 1.2rem;
+  }
+}

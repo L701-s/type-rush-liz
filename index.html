@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeRush — Typing Speed Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>TypeRush</h1>
+      <p>Type the text as fast and accurately as you can.</p>
+    </header>
+
+    <section class="controls" aria-label="Game settings">
+      <div class="control-group">
+        <span class="label">Time</span>
+        <div class="pills" id="time-options">
+          <button type="button" class="pill active" data-time="15">15s</button>
+          <button type="button" class="pill" data-time="30">30s</button>
+          <button type="button" class="pill" data-time="60">60s</button>
+        </div>
+      </div>
+      <div class="control-group">
+        <span class="label">Difficulty</span>
+        <div class="pills" id="difficulty-options">
+          <button type="button" class="pill active" data-difficulty="easy">Easy</button>
+          <button type="button" class="pill" data-difficulty="medium">Medium</button>
+          <button type="button" class="pill" data-difficulty="hard">Hard</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-live="polite">
+      <div class="stat">
+        <span class="stat-value" id="wpm">0</span>
+        <span class="stat-label">WPM</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="accuracy">100%</span>
+        <span class="stat-label">Accuracy</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="timer">15</span>
+        <span class="stat-label">Time</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="best">0</span>
+        <span class="stat-label">Best WPM</span>
+      </div>
+    </section>
+
+    <section class="playfield">
+      <div id="words" class="words" aria-label="Text to type"></div>
+      <textarea
+        id="input"
+        class="hidden-input"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-label="Type here"
+      ></textarea>
+      <p class="hint" id="hint">Click here or start typing to begin</p>
+    </section>
+
+    <div class="actions">
+      <button type="button" id="restart" class="restart">Restart</button>
+    </div>
+
+    <div class="overlay hidden" id="results" role="dialog" aria-labelledby="results-title">
+      <div class="results-card">
+        <h2 id="results-title">Time's up</h2>
+        <div class="results-grid">
+          <div>
+            <strong id="result-wpm">0</strong>
+            <span>WPM</span>
+          </div>
+          <div>
+            <strong id="result-accuracy">100%</strong>
+            <span>Accuracy</span>
+          </div>
+          <div>
+            <strong id="result-chars">0</strong>
+            <span>Characters</span>
+          </div>
+          <div>
+            <strong id="result-errors">0</strong>
+            <span>Errors</span>
+          </div>
+        </div>
+        <p class="best-note" id="new-best" hidden>New personal best!</p>
+        <button type="button" id="play-again" class="restart">Play again</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
